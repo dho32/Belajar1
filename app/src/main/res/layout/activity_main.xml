@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:padding="16dp"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_move"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="move"/>
+
+    <Button
+        android:id="@+id/btn_passing_data"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="passing data"/>
+
+    <Button
+        android:id="@+id/btn_passing_object"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="passing object"/>
+
+    <Button
+        android:id="@+id/btn_call_back"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="call back"/>
+
+    <Button
+        android:id="@+id/btn_email"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="email"/>
+
+    <Button
+        android:id="@+id/btn_call"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="call"/>
+
+</LinearLayout>
