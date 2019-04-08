@@ -1,15 +1,19 @@
 package com.example.haripertama;
 
 import android.content.Intent;
+import android.net.Uri;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.haripertama.model.Orang;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private static final int REQUEST_CODE = 1;
     //TODO 1.1 Declare widget yg mw digunakan
     Button btnMove, btnPassingData, btnPassingObject,
             btnCallBack, btnEmail, btnCall;
@@ -43,10 +47,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 move();
                 break;
             case R.id.btn_call:
+                implicitCall();
                 break;
             case R.id.btn_call_back:
+                callBack();
                 break;
             case R.id.btn_email:
+                implicitEmail();
                 break;
             case R.id.btn_passing_data:
                 passData();
@@ -56,6 +63,49 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }       
     }
+
+    //TODO 6.1 intent implicit email
+    private void implicitEmail() {
+        Intent email = new Intent(Intent.ACTION_SENDTO,
+                Uri.fromParts("mailto",
+                        "romydho@gmail.com",
+                        null));
+        email.putExtra(Intent.EXTRA_SUBJECT, "ini subject");
+        email.putExtra(Intent.EXTRA_TEXT, "ini body message");
+
+        if (email.resolveActivity(getPackageManager()) != null){
+            startActivity(Intent.createChooser(email, "Pilih share client"));
+        }else{
+            Toast.makeText(this,
+                    "Tidak ada share client", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    //TODO 5.1 intent implicitCall
+    private void implicitCall() {
+        Intent call = new Intent(Intent.ACTION_DIAL);
+        call.setData(Uri.parse("tel:081807365101"));
+        startActivity(call);
+    }
+
+    private void callBack() {
+        Intent callBack = new Intent(MainActivity.this, CallBack.class);
+        startActivityForResult(callBack, REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_CODE){
+            if (resultCode == RESULT_OK){
+                String tampung = getIntent().getStringExtra(CallBack.EXTRA_DATA);
+                Toast.makeText(this, tampung, Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
     //TODO 3.3 buat intent/ kirim data
     private void passObject() {
         Intent passObj = new Intent(MainActivity.this, PassingObject.class);
